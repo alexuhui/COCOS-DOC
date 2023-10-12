@@ -76,7 +76,7 @@ cocos new FirstDemo -p com.my_company.firstDemo -l cpp -d myProjects
 cd .\myProjects\FirstDemo\
 cocos run -p win32
 ```
-发现需要安装vs [2013, 2015, 2017] 其中一个版本<br>
+发现需要安装vs [2013, 2015, 2017] 其中一个版本，电脑装了vs 2022，懒得折腾了~<br>
 ![build](./img/001/build.png)<br>
 
 尝试使用cmake（需要机器安装了cmake 3.6 或以上版本）: <br>
