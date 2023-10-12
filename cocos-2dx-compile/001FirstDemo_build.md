@@ -119,6 +119,11 @@ rmdir .\cmake-build\*
 cmake -S . -B cmake-build -G "Visual Studio 17 2022" -A "Win32"
 cmake --build cmake-build --config Release
 ```
-- 好家伙！成功了！<br>
+- 好家伙！成功了！(虽然还是一堆输出，但都是警告，没有报错)<br>
 ![first.exe](./img/001/build_first_demo.png)<br>
-![run](./img/001/run_first_demo.png)
+![run](./img/001/run_first_demo.png) <br>
+
+#### 总结
+- cocos 使用`python2.7`
+- windows平台只支持构建`32位`程序
+- windows只能使用`MSVC`进行编译
