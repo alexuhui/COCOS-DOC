@@ -18,7 +18,7 @@ git submodule add https://github.com/greenm01/poly2tri
 #### python 安装
 - 官方建议使用python2.7  (在download-deps.py : python 2.x is required. (Version 2.7 is well tested))<br>
 - window 同时安装python3 和 python2 的方法：<br>
-1. 先安装python3 并 勾选添加PATH (默认使用python3)<br>
+1. 先安装python3 并 勾选添加PATH (默认使用python3)，注意，如果不经常用python3，把python2设置成默认版本更方便<br>
 2. 再安装python2，在安装路径把 `python.exe`改成`python2.exe`；把`pythonw.exe`改成`pythonw2.exe`，并把python2安装路径配置到环境变量<br>
 - 检测是否安装成功：<br>
 1. python3
@@ -49,9 +49,14 @@ $ python2 .\setup.py
 - 这里留意一个坑，由于安装python时，将python3 作为了默认版本，而cocos使用的是python2.7<br>
 执行cocos里的python脚本需要使用 python2 xxx <br>
 所以cocos.bat脚本需要把python改到python2  <br>
+另外，由于`cocos.bat`在`cocos2d-console`这个子包里，修改的话，最好fork到自己仓库修改，然后重新添加子包<br>
 ```bash
 @echo off
 @python2 "%~dp0/cocos.py" %*
+```
+删除原子包，add新子包后，更新子包到最新版本<br>
+```bash
+git submodule update --remote
 ```
 
 - 执行新建命令<br>
@@ -65,6 +70,9 @@ cocos new MyGame -p com.my_company.mygame -l cpp -d NEW_PROJECTS_DIR
 基于强迫症，吧`NEW_PROJECTS_DIR`删了，重来<br>
 ``` bash
 rmdir .\NEW_PROJECTS_DIR\
+```
+cd 到外部某个目录（自己喜欢就行），执行新建命令<br>
+``` bash
 cocos new FirstDemo -p com.my_company.firstDemo -l cpp -d myProjects
 ```
 
