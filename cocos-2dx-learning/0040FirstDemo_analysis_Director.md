@@ -115,4 +115,5 @@ ONLY call it if there is a running scene.
 - Renderer* getRenderer() const
 
 #### 综上
-Director 像是游戏世界的上帝；它是游戏的最顶层控制器，掌管场景的生杀大权，渲染，事件派发器，游戏的暂停，恢复等等一系列宏观操作
+Director 像是游戏世界的上帝；
+它是游戏的最顶层控制器，掌管场景的生杀大权，渲染，事件派发器，游戏的暂停，恢复等等一系列宏观操作
