@@ -20,7 +20,38 @@ The 'custom selectors' should be avoided when possible. It is faster, and consum
 ```
 <br>
 
-#### 作用
-- void update(float dt);
-1. update函数是游戏里很重要的一个函数，几乎游戏的一切都靠update来推进。
-2. Schduler类处理各种update注册/注销
+#### 重点公共方法
+- void update(float dt)
+```
+update函数是游戏里很重要的一个函数，几乎游戏的一切都靠update来推进。
+You should NEVER call this method, unless you know what you are doing.
+不要自己手动调用这个update函数
+
+注册在Schedule里的回调根据优先级保存在_updatesNegList/_updates0List/_updatesPosList 三个双向链表
+这个函数会每帧刷新这些回调
+
+```
+<br>
+
+- void scheduleUpdate(T *target, int priority, bool paused)
+```
+Schedules the 'update' selector for a given target with a given priority.
+The 'update' selector will be called every frame.
+The lower the priority, the earlier it is called.
+
+注册target的update回调，并指定优先级
+update回调每帧都会调用
+优先级的值越小，越早被调用
+```
+<br>
+
+- void unscheduleUpdate(void *target)
+```
+Unschedules the update selector for a given target
+@param target The target to be unscheduled.
+
+注销回调
+```
+<br>
+
+- 
