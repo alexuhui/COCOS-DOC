@@ -25,5 +25,39 @@ Scene 和 Node 在几乎相同，区别在于 Scene 默认情况下在屏幕中�
 Scene 将为你创建一个默认的摄像机。
 ```
 
-#### scene 是一个特殊的节点
-Scene继承自Node, 是其它当前场景上的节点的根节点
+#### 重点方法
+- static Scene *create()
+```
+Creates a new Scene object. 
+@return An autoreleased Scene object.
+```
+<br>
+
+- const std::vector<Camera*>& getCameras()
+```
+Get all cameras.
+@return The vector of all cameras, ordered by camera depth.
+
+返回按深度排序的摄像机列表
+```
+<br>
+
+- const std::vector<BaseLight*>& getLights()
+```
+获取场景所有灯光
+```
+<br>
+
+- virtual void render(Renderer* renderer, const Mat4& eyeTransform, const Mat4* eyeProjection = nullptr)
+```
+Render the scene.
+@param renderer The renderer use to render the scene.
+@param eyeTransform The AdditionalTransform of camera.
+@param eyeProjection The projection matrix of camera.
+
+渲染场景
+```
+
+#### 综上
+1. scene 是一个特殊的节点，Scene继承自Node, 是其它当前场景上的节点的根节点
+2. scene 拥有节点的属性，又有`leader`的属性，对当前游戏场景拥有整体认知：使用了多少摄像机，灯光使用情况等等
