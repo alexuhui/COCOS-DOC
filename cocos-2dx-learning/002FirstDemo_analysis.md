@@ -251,4 +251,37 @@ void Director::drawScene()
 }
 ```
 
-在`while`循环的推动下，游戏巨轮滚滚向前
+在`while`循环的推动下，游戏巨轮滚滚向前<br>
+<br>
+
+##### 这个`drawScene`里面的`_runningScene`到底是谁呢？
+我们回到`main.cpp`，这里创建了一个`AppDelegate`类实例 `app`，我们还没分析。<br>
+```cpp
+// ......
+// create the application instance
+    AppDelegate app;
+    return Application::getInstance()->run();
+// ......
+```
+app的生命周期伴随游戏生命周期<br>
+<br>
+
+- AppDelegate 是个啥？<br>
+[AppDelegate](../cocos-2dx-learning/0029FirstDemo_analysis_AppDelegate.md)<br>
+<br>
+
+- AppDelegate 做了什么呢？<br>
+```cpp
+bool AppDelegate::applicationDidFinishLaunching() {
+// .....
+
+    // 在aplication加载完成后，新建了一个helloworld场景
+    // create a scene. it's an autorelease object
+    auto scene = HelloWorld::createScene();
+    // run
+    director->runWithScene(scene);
+    return true;
+}
+```
+所以`HelloWorldScene`就是我们的首场景，在不做任何修改的情况下，
+`drawScene`就在反复重绘这个`HelloWorldScene`
