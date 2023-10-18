@@ -186,3 +186,29 @@ if (iter != _listenerMap.end())
     (this->*pfnDispatchEventToListeners)(listeners, onEvent);
 }
 ```
+<br>
+
+#### 示例
+```cpp
+// 1. 定义一个ListenerID
+const char* HelloWorld::EVENT_TEST = "event_test";
+
+// 2. 定义一个回调方法（或者直接用lamda表达式）
+void HelloWorld::onEventTest(cocos2d::EventCustom* event)
+{
+    // ......
+}
+
+// 3. 初始化的时候，注册监听
+auto _listener = EventListenerCustom::create(EVENT_TEST, std::bind(&HelloWorld::onEventTest, this, std::placeholders::_1));
+_eventDispatcher->addEventListenerWithSceneGraphPriority(_listener, this);
+
+// 4. 派发事件通知
+_eventTest = new (std::nothrow) cocos2d::EventCustom(EVENT_TEST);
+_eventTest->setUserData(&delta);
+_eventDispatcher->dispatchEvent(_eventTest);
+```
+
+#### 综上
+1. 事件通过ListenerID标记，可以定义一个全局id表
+2. 需要避免id重复
